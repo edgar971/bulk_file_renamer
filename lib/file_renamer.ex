@@ -44,9 +44,11 @@ defmodule FileRenamer do
   def find_image_file(filename, dir \\ "data") do 
     
     Enum.each(File.ls!(dir), fn file ->
+      
       IO.puts fname = "#{dir}/#{file}  - #{filename}"
 
-      # if File.dir?(fname), do: find_image_file(fname)
+      if File.dir?(fname), do: find_image_file(fname)
+
     end)
 
   end
