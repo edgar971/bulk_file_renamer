@@ -3,6 +3,10 @@ defmodule FileRenamer do
   Documentation for FileRenamer.
   """
 
+  @doc """
+  Main function to call in order to start the process. 
+
+  """
   def main(filename) do 
 
     File.stream!(filename)
@@ -29,8 +33,21 @@ defmodule FileRenamer do
   end
 
   def process_row([upc, description, photo_id | _tail] = row) do
+    
+    # Process only images that have a photo file
+    if(String.trim(photo_id) != "") do 
+      find_image_file(photo_id)
+    end
 
-    if(photo_id)
+  end
+
+  def find_image_file(filename, dir \\ "data") do 
+    
+    Enum.each(File.ls!(dir), fn file ->
+      IO.puts fname = "#{dir}/#{file}  - #{filename}"
+
+      # if File.dir?(fname), do: find_image_file(fname)
+    end)
 
   end
 

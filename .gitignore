@@ -19,5 +19,8 @@ erl_crash.dump
 # Also ignore archive artifacts (built via "mix archive.build").
 *.ez
 
-
-data
+*.csv
+*.JPG
+*.jpg
+*.jpeg
+*.RAW
