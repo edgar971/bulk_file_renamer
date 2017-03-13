@@ -3,6 +3,14 @@ defmodule FileRenamer do
   Documentation for FileRenamer.
   """
 
+  def main(filename) do 
+
+    File.stream!(filename)
+    |> CSV.Decoder.decode
+    |> process_csv
+
+  end
+
   @doc """
   Hello world.
 
@@ -12,10 +20,19 @@ defmodule FileRenamer do
       :world
 
   """
-  def load_file(filename) do
-    case File.read(filename) do 
-            {:ok, binary} -> :erlang.binary_to_term(binary)
-            {:error, _reason} -> "That file does not exist" 
-    end
+  def process_csv(csv) do
+
+    { headers, rows } = Enum.split(csv, 2)
+    
+    Enum.each(rows, &process_row/1)
+
   end
+
+  def process_row([upc, description, photo_id | _tail] = row) do
+
+    if(photo_id)
+
+  end
+
+
 end
