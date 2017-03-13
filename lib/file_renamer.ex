@@ -12,7 +12,10 @@ defmodule FileRenamer do
       :world
 
   """
-  def getFile(directory) do
-    
+  def load_file(filename) do
+    case File.read(filename) do 
+            {:ok, binary} -> :erlang.binary_to_term(binary)
+            {:error, _reason} -> "That file does not exist" 
+    end
   end
 end
