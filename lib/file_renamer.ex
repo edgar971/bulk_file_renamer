@@ -1,8 +1,14 @@
 defmodule FileRenamer do
   @moduledoc """
   Documentation for FileRenamer.
-
-  Used to rename images and copying in bulk a
+  
+  ## Usage
+  1. Place images folder to the `./data/original` directory.
+  1. Place CSV file inside `./data/`
+  1. Install any required Hex packages: `mix deps.get` 
+  1. Run the Elixir Interface: `iex -S mix`
+  1. Call the `FileRenamer.main` function: `FileRenamer.main("data/example.csv")`
+  1. Any matched images will be saved under `./data/processed` using the same directory structure.
   """
 
   @doc """

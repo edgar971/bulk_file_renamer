@@ -29,7 +29,8 @@ defmodule FileRenamer.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:csv, "~> 1.4.2"}
+      {:csv, "~> 1.4.2"},
+      {:ex_doc, "~> 0.15.0"}
     ]
   end
 end
