@@ -2,7 +2,7 @@ defmodule FileRenamer do
   @moduledoc """
   Documentation for FileRenamer.
 
-  Used to rename images in bulk. 
+  Used to rename images and copying in bulk a
   """
 
   @doc """
@@ -18,12 +18,7 @@ defmodule FileRenamer do
   end
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> FileRenamer.getFile
-      :world
+  Process the `csv` file given.
 
   """
   def process_csv(csv) do
@@ -35,7 +30,11 @@ defmodule FileRenamer do
   end
 
   
+  @doc """
+  Process each of of the csv file. 
+  We only care about the first 3 columns, the rest if not needed. 
 
+  """
   def process_row([upc, description, photo_id | _tail] = row) do
     
     # Process only images that have a photo file
@@ -48,6 +47,9 @@ defmodule FileRenamer do
 
   end
 
+  @doc """
+  This function copies the file to the new destination. It also renames it. 
+  """
   def copy_image(%FileRenamer.File{name: name, file_path: file_path, extension: extension }, upc) do 
       
       [_first, _second | tail] = Path.split(file_path)
@@ -63,6 +65,9 @@ defmodule FileRenamer do
 
   end
 
+  @doc """
+  Recursively searches through files and directories and copies the file if found.
+  """
   def find_image_file(row_filename, upc, dir \\ "data") do 
       
       # Map each file and call the copy function if it's found
@@ -85,6 +90,9 @@ defmodule FileRenamer do
 
   end
 
+  @doc """
+  Determines if the filename is a match based on different naming patterns used. 
+  """
   def does_filename_match?(row_filename, filename) do 
     
     # Neal 100-5813 -> DSC05813.JPG
