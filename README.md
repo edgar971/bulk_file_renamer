@@ -4,6 +4,11 @@
 
 ## Installation
 
+```elixir
+
+FileRenamer.main("data/festival.csv")
+
+```
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed
 by adding `file_renamer` to your list of dependencies in `mix.exs`:
 
