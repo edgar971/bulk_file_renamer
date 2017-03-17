@@ -18,9 +18,7 @@ defmodule FileRenamer do
         opts = [strategy: :one_for_one, name: FileRenamer.Supervisor]
         process = Supervisor.start_link(children, opts)
 
-        FileRenamer.CSV.decode("data/festival.csv")
-        |> FileRenamer.CSV.get_rows
-        |> FileRenamer.Server.process
+       
 
         # Make sure we return the process. Elixir needs to know and track it. 
         process

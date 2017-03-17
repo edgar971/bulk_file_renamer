@@ -4,7 +4,15 @@ defmodule FileRenamer.CSV do
 
     """
 
+    def process(filename) do 
+
+        decode(filename)
+        |> get_rows
+        |> process_rows
+
+    end
     @doc """
+
     Decodes a CSV file and returns the stream
 
     """
@@ -43,7 +51,7 @@ defmodule FileRenamer.CSV do
 
     """
     def process_rows(rows) do
-
+        
         Enum.each(rows, &process_row/1)
 
     end
@@ -53,16 +61,17 @@ defmodule FileRenamer.CSV do
     We only care about the first 3 columns, the rest if not needed. 
 
     """
-    def process_row([upc, _description, photo_id | _tail] = _row) do
+    def process_row([upc, description, photo_id | _tail] = _row) do
         
-
+        
         # Process only images that have a photo file
         trimmed_photo_id = String.trim(photo_id) |> String.downcase
 
         if(trimmed_photo_id != "") do 
             
-            IO.puts("=> Searching for #{trimmed_photo_id}") 
-            
+            header = ["UPC", "Description", "Photo ID"]
+            TableRex.quick_render!([[upc, description, photo_id]], header) |> IO.puts
+
             # Search for the image
             FileRenamer.File.find_image_file(trimmed_photo_id, upc)
 

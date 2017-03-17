@@ -27,7 +27,7 @@ defmodule FileRenamer.File do
 
         if(does_filename_match?(row_filename, clean_filename)) do 
           
-          IO.puts("++ Found Image #{full_filepath}")
+          IO.puts("+++++ Found Image #{full_filepath}")
           extension = Path.extname(file)
           copy_image(%FileRenamer.Image{name: file, file_path: dir, extension: extension }, upc)
           
@@ -72,6 +72,12 @@ defmodule FileRenamer.File do
 
       # Create it if it doesn't exist
       if !File.exists?(destination_dir), do: File.mkdir_p(destination_dir)
+      
+      IO.puts(" ")
+      IO.puts("----> Renaming Image Image")
+      IO.puts(" ")
+      header = ["UPC", "Source", "Destination"]
+      TableRex.quick_render!([[upc, "#{file_path}/#{name}", "#{destination_dir}/#{upc}#{extension}"]], header) |> IO.puts
 
       # Copy it
       File.copy("#{file_path}/#{name}", "#{destination_dir}/#{upc}#{extension}")

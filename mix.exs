@@ -16,7 +16,7 @@ defmodule FileRenamer.Mixfile do
   def application do
     # Specify extra applications you'll use from Erlang/Elixir
     [
-      extra_applications: [:logger],
+      extra_applications: [:logger, :table_rex],
       mod: {FileRenamer, []}
     ]
   end
@@ -33,7 +33,9 @@ defmodule FileRenamer.Mixfile do
   defp deps do
     [
       {:csv, "~> 1.4.2"},
-      {:ex_doc, "~> 0.15.0"}
+      {:ex_doc, "~> 0.15.0"},
+      {:progress_bar, "> 0.0.0"},
+      {:table_rex, "~> 0.10"}
     ]
   end
 end
