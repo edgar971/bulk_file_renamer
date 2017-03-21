@@ -14,7 +14,7 @@ defmodule FileRenamer.File do
   @doc """
   Recursively searches through files and directories and copies the file if found.
   """
-  def find_image_file(row_filename, upc, dir \\ "data") do 
+  def find_image_file(row_filename, upc, dir \\ "data/original") do 
       
       
       # Map each file and call the copy function if it's found
