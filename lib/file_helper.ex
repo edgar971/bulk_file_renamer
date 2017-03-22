@@ -80,8 +80,12 @@ defmodule FileRenamer.File do
       TableRex.quick_render!([[upc, "#{file_path}/#{name}", "#{destination_dir}/#{upc}#{extension}"]], header) |> IO.puts
 
       # Copy it
-      File.copy("#{file_path}/#{name}", "#{destination_dir}/#{upc}#{extension}")
-
+      case File.copy("#{file_path}/#{name}", "#{destination_dir}/#{upc}#{extension}") do 
+        {:ok, _ } -> File.rm("#{file_path}/#{name}")
+        _ -> false
+      end
+      
+      
   end
 
 
